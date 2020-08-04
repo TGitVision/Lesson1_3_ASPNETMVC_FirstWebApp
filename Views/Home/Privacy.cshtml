@@ -1,0 +1,85 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+    string myText = "Hello from my C# Razor Text Area.";
+    string[] myArray = { "A", "B", "C", "D", "E", "F", "G" };
+    int[] array2 = { 1, 2, 3, 4, 5, 6, 7 };
+}
+<h2>@ViewData["Title"]</h2>
+
+<p>Use this page to detail your site's privacy policy.</p>
+<p>Here is what the myText variable states: @myText </p>
+
+<ul>
+
+    @foreach (string item in myArray)
+    {
+        <li>@item</li>
+    }
+
+</ul>
+
+<table>
+        @foreach (int column in array2)
+        {
+            <tr>
+                <td style="border: 1px solid black" width="20px">@column</td>
+                @foreach (string row in myArray)
+                {
+                    <td style="border: 1px solid black" width="20px">
+                        @if (column == 1)
+                        {@row}
+                        else
+                        {
+
+                        }
+                    </td>
+                }
+            </tr>
+
+        }
+    </table>
+
+<p>
+        @{
+
+            byte[] data = new byte[500];
+            for (int i = 0; i < data.Length; i++)
+            {
+
+                Random rand = new Random();
+
+                rand.NextBytes(data);
+                Char c = (char)data[i];
+                @Html.DisplayFor(x => c);
+
+            }
+
+        }
+    </p>
+
+@*Html Helpers*@
+<h2>Html Helper Examples</h2>
+<br />
+<br />
+<div>
+    @{ string Name = "My Name";}
+
+    @Html.Label("Textbox1", "Label Text")
+    @Html.TextBox("Textbox1")
+
+    @Html.LabelFor(x => Name)
+    @Html.TextBoxFor(x => Name)
+
+</div>
+<br />
+<br />
+<h2>Tag Helper Examples</h2>
+@*Tag Helpers*@
+<form asp-controller="Home" asp-action="Contact">
+    <label asp-for="@Name">Tag Helper Version</label>
+    <input asp-for="@Name" />
+</form>
+<br />
+<br />
+<br />
+<br />
